@@ -23,15 +23,73 @@
         <input type="text" placeholder="Digite o Titulo">
     </p>
         <p>
-        <input type="text" name="" id="" placeholder="Digite a Descrição">
+        <input type="text" placeholder="Digite a Descrição">
     </p>
-        <p><input type="text" placeholder="Digite o Endereço do Fanart  "></p>
-        <p><input type="text" name="" id="" placeholder="Digite o Thumbnail"></p>
+        <p><input type="text" placeholder="Digite o Endereço do Fanart"></p>
+        <p><input type="text" placeholder="Digite o Thumbnail"></p>
         <p><input type="text" placeholder="Digite o Genero"></p>
     <p><input type="text" placeholder="Digite a Data de Lançamento"></p>
     
-    <button>Criar Xml</button>
+    <button onclick="criaXML()">Criar Xml</button>
     </div>
 
+    <script>
+
+        function criaXML() {
+            
+        //Cria o documento vazio
+        var docXml = document.implementation.createDocument("","", null)
+        
+        //cria o Elemento Biblioteca
+        var biblioteca = docXml.createElement("biblioteca");
+
+        //cria o Elemento title
+        var titleFilme = docXml.createElement("title");
+        
+        //Texto para o nó
+        var title = "Aqui esta um titulo";
+
+        //adiciona o nó do texto no elemento title
+        var textNodeTitle = docXml.createTextNode(title)
+
+        titleFilme.appendChild(textNodeTitle)
+
+        var descricaoFilme = docXml.createElement("info");
+
+        var fanart = docXml.createElement("fanart");
+
+        var thumb = docXml.createElement("thumbnail");
+
+        var genero = docXml.createElement("genre")
+
+        var date = docXml.createElement("date")
+
+        docXml.appendChild(biblioteca);
+        biblioteca.appendChild(titleFilme)
+        
+        biblioteca.appendChild(descricaoFilme)
+        biblioteca.appendChild(fanart)
+        biblioteca.appendChild(thumb)
+        biblioteca.appendChild(genero)
+        biblioteca.appendChild(date)
+
+        console.log(biblioteca);
+        
+        }
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+    </script>
 </body>
 </html>

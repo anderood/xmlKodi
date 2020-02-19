@@ -19,24 +19,26 @@
 
     <div>
         <h2>Cadastrando o Filme</h2>
-        <p>
-        <input type="text" placeholder="Digite o Titulo">
-    </p>
-        <p>
-        <input type="text" placeholder="Digite a Descrição">
-    </p>
-        <p><input type="text" placeholder="Digite o Endereço do Fanart"></p>
-        <p><input type="text" placeholder="Digite o Thumbnail"></p>
-        <p><input type="text" placeholder="Digite o Genero"></p>
-    <p><input type="text" placeholder="Digite a Data de Lançamento"></p>
-    
-    <button onclick="criaXML()">Criar Xml</button>
+        <p><input type="text" id="title" placeholder="Digite o Titulo"></p>
+        <p><input type="text" id="description" placeholder="Digite a Descrição"></p>
+        <p><input type="text" id="address" placeholder="Digite o Endereço do Fanart"></p>
+        <p><input type="text" id="thumb" placeholder="Digite o Thumbnail"></p>
+        <p><input type="text" id="genere" placeholder="Digite o Genero"></p>
+        <p><input type="text" id="date" placeholder="Digite a Data de Lançamento"></p>
+        <button onclick="criaXML()">Criar Xml</button>
     </div>
 
     <script>
 
-        function criaXML() {
-            
+        var titleID = document.getElementById('title')
+        var descriptionID = document.getElementById('description')
+        var addressID = document.getElementById('address')
+        var thumbID = document.getElementById('thumb')
+        var genereID = document.getElementById('genere')
+        var dateID = document.getElementById('date')   
+         
+        function criaXML() {       
+
         //Cria o documento vazio
         var docXml = document.implementation.createDocument("","", null)
         
@@ -45,24 +47,39 @@
 
         //cria o Elemento title
         var titleFilme = docXml.createElement("title");
-        
-        //Texto para o nó
-        var title = "Aqui esta um titulo";
 
         //adiciona o nó do texto no elemento title
-        var textNodeTitle = docXml.createTextNode(title)
-
+        var textNodeTitle = docXml.createTextNode(titleID.value)
         titleFilme.appendChild(textNodeTitle)
 
         var descricaoFilme = docXml.createElement("info");
 
+        var textNodeInfo = docXml.createTextNode(descriptionID.value)
+        descricaoFilme.appendChild(textNodeInfo)
+
         var fanart = docXml.createElement("fanart");
+
+        var fanartText = "Aq esta o Fanart"
+        var textNodeFanart = docXml.createTextNode(fanartText)
+        fanart.appendChild(textNodeFanart)
 
         var thumb = docXml.createElement("thumbnail");
 
+
+        var textNodeThumb = docXml.createTextNode(thumbID.vlaue)
+        thumb.appendChild(textNodeThumb)
+
         var genero = docXml.createElement("genre")
 
+        
+        var textNodeGenero = docXml.createTextNode(genereID.value)
+        genero.appendChild(textNodeGenero)
+
         var date = docXml.createElement("date")
+
+        
+        var textNodeData = docXml.createTextNode(dateID.value)
+        date.appendChild(textNodeData)
 
         docXml.appendChild(biblioteca);
         biblioteca.appendChild(titleFilme)

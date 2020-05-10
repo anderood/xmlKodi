@@ -1,98 +1,78 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>XML KODI</title>
+    <title>xmlKodi</title>
 </head>
 <body>
-    <!-- 
-        Passos...
-        titulo do Filme
-        Descrição do Filme
-        fanart
-        thumbnail
-        genero
-        data
-     -->
+    <header>
+        <article>
+            <section>
+                <!-- Logo XML KODI -->
+                <section>
+                    <h1>XML K0D1</h1>
+                </section>
+            </section>
+        </article>
+    </header>
+    <nav>
+        <section>
+            <section>
+                <ul>
+                    <li>Home</li>
+                </ul>
+            </section>
+        </section>
+    </nav>
+    <main>
+        <article>
+            <section>
+                <section>
+                    <form action="">
+                        <fieldset>
+                            <legend>Cadastro de Titulos KODI</legend>
+                            <label for="">Titulo</label>
+                            <input id="inptTitle" type="text">
 
-    <div>
-        <h2>Cadastrando o Filme</h2>
-        <p><input type="text" id="title" placeholder="Titulo"></p>
-        <p><input type="text" id="description" placeholder="Descrição"></p>
-        <p><input type="text" id="fanart" placeholder="Fanart"></p>
-        <p><input type="text" id="link" placeholder="Link"></p>
-        <p><input type="text" id="thumb" placeholder="Thumbnail"></p>
-        <p><input type="text" id="genre" placeholder="Genero"></p>
-        <p><input type="text" id="date" placeholder="Data de Lançamento"></p>
-        <button onclick="criaXML()">Criar Xml</button>
-    </div>
-
-    <script>
-
-        var txtTitle = document.getElementById('title')
-        var txtDescription = document.getElementById('description')
-        var txtFanart = document.getElementById('fanart')
-        var txtLink = document.getElementById('link')
-        var txtThumb = document.getElementById('thumb')
-        var txtGenre = document.getElementById('genre')
-        var txtDate = document.getElementById('date')   
-         
-        function criaXML() {       
-
-            //Cria o documento vazio
-            var docXml = document.implementation.createDocument("","", null)
-            
-            //cria o Elemento Biblioteca
-            var biblioteca = docXml.createElement("biblioteca");
-
-            //cria o Elemento title
-            var titleElement = docXml.createElement("title");
-            var txtNodeTitle = docXml.createTextNode(txtTitle.value)
-            titleElement.appendChild(txtNodeTitle)
-            
-
-            var descricaoElement = docXml.createElement("info");
-            var txtNodeInfo = docXml.createTextNode(txtDescription.value)
-            descricaoElement.appendChild(txtNodeInfo)
-
-
-            var fanartElement = docXml.createElement("fanart")
-            var txtNodeFanart = docXml.createTextNode(txtFanart.value)
-            fanartElement.appendChild(txtNodeFanart)
-
-            
-            var linkElement = docXml.createElement('link')
-            var txtNodeLink = docXml.createTextNode(txtLink.value)
-            linkElement.appendChild(txtNodeLink)
-
-
-            var thumbElement = docXml.createElement("thumbnail")
-            var txtNodeThumb = docXml.createTextNode(txtThumb.value)
-            thumbElement.appendChild(txtNodeThumb)
-
-            var genreElement = docXml.createElement("genre")
-            var txtNodeGenre = docXml.createTextNode(txtGenre.value)
-            genreElement.appendChild(txtNodeGenre)
-
-            var dateElement = docXml.createElement("date")
-            var txtNodeDate = docXml.createTextNode(txtDate.value)
-            dateElement.appendChild(txtNodeDate)
-
-            docXml.appendChild(biblioteca);
-            biblioteca.appendChild(titleElement)
-            biblioteca.appendChild(fanartElement)
-            biblioteca.appendChild(linkElement)
-            biblioteca.appendChild(thumbElement)
-            biblioteca.appendChild(genreElement)
-            biblioteca.appendChild(dateElement)
-        
-        }
-
-        
-
-
-    </script>
+                            <fieldset>
+                                <legend>Cadastrar Itens</legend>
+                                <p>
+                                    <a href="">Novo Item</a>
+                                </p>
+                                <ul>
+                                    <li>Link
+                                        <input id="inptLink" type="text">
+                                    </li>
+                                    <li>Fanart
+                                        <input id="inptFanart" type="text">
+                                    </li>
+                                    <li>Thumbnail
+                                        <input id="inptThumb" type="text">
+                                    </li>
+                                    <li>Genero
+                                        <input id="inptGenere" type="text">
+                                    </li>
+                                    <li>Data de Lançamento
+                                        <input id="inptDatadeLancamento" type="text">
+                                    </li>
+                                </ul>
+                            </fieldset>
+                            <button>Criar XML Kodi</button>
+                            <button>Limpar</button>
+                        </fieldset>
+                    </form>
+                </section>
+            </section>
+        </article>
+    </main>
+    <footer>
+        <article>
+            <section>
+                <p>XML KODI</p>
+            </section>
+        </article>
+    </footer>
+    <script src="/js/main.js"></script>
 </body>
 </html>

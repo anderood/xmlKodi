@@ -43,7 +43,25 @@ function criaXmlKodi(){
     filmesElem.appendChild(genreElem);
     filmesElem.appendChild(dataElem);
     
-    console.log(filmesElem);
+    return filmesElem;
+    
+    //limpaCampos();
+    
+}
+
+function salvarXml(){
+    
+
+    let estrutura = criaXmlKodi();
+    console.log(estrutura);
+    
+    var inputTitulo = document.querySelector('#inptTitle');
+    console.log("AQ " + inputTitulo.value);
+    
+    let blob = new Blob([inputTitulo], { type: "text/plain;charset=utf-8"});
+    console.log(blob)
+    saveAs(blob, inputTitulo.value + ".txt");
+
 }
 
 function validaCampos(){
@@ -79,10 +97,11 @@ function retiraEspacos(){
 }
 
 function limpaCampos(){
-    inputTitulo.textContent = ""
-    inputLink.textContent = ""
-    inputFanart.textContent = ""
-    inputThumb.textContent = ""
-    inputGenero.textContent = ""
-    inputData.textContent = ""
+    
+    inputTitulo.value = ""
+    inputLink.value = ""
+    inputFanart.value = ""
+    inputThumb.value = ""
+    inputGenero.value = ""
+    inputData.value = ""
 }

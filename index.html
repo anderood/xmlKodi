@@ -33,7 +33,7 @@
                         <fieldset>
                             <legend>Cadastro de Titulos KODI</legend>
                             <label for="">Titulo</label>
-                            <input id="inptTitle" type="text">
+                            <input id="inptTitleArquivo" type="text">
 
                             <fieldset>
                                 <legend>Cadastrar Itens</legend>
@@ -41,6 +41,9 @@
                                     <a href="">Novo Item</a>
                                 </p>
                                 <ul>
+                                    <li>Titulo
+                                        <input id="inptTitle" type="text">
+                                    </li>
                                     <li>Link
                                         <input id="inptLink" type="text">
                                     </li>
@@ -58,7 +61,7 @@
                                     </li>
                                 </ul>
                             </fieldset>
-                            <button>Criar XML Kodi</button>
+                            <button id="Salva">Criar XML Kodi</button>
                             <button>Limpar</button>
                         </fieldset>
                     </form>
@@ -75,5 +78,8 @@
     </footer>
     <script src="./js/FileSaver.js"></script>
     <script src="./js/main.js"></script>
+
+   
+   
 </body>
 </html>

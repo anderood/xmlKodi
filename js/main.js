@@ -26,22 +26,6 @@ salvaXML.addEventListener('click', function(event){
             inputData.value
         ]
     }
-    console.log("Estou em SalvarXML" + itensXML.id);
-    
-    var templateXML = `<?xml version="1.0" encoding="UTF-8"?>
-<BIBLIOTECA>
-  <FILMES>
-    <TITLE>${itensXML.itens[0]}</TITLE>
-    <LINK>${itensXML.itens[1]}</LINK>
-    <FANART>${itensXML.itens[2]}</FANART>
-    <THUMBNAIL>${itensXML.itens[3]}</THUMBNAIL>
-    <GENRE>${itensXML.itens[4]}</GENRE>
-    <DATA>${itensXML.itens[5]}</DATA>
-  </FILMES>
-</BIBLIOTECA>`
-
-
-    console.log(templateXML);
 
     var form = document.getElementById('form');
     form.reset();
@@ -65,6 +49,7 @@ novoItem.addEventListener('click', function(event){
         }
     }
     console.log(itens);
+    
 });
 
 var limpaCampos = document.querySelector('#limpaCampos');
@@ -73,3 +58,55 @@ limpaCampos.addEventListener('click', function(){
     var form = document.getElementById('form');
     form.reset();
 });
+
+var novo = document.querySelector('#teste');
+teste.addEventListener('click', function(event){
+    event.preventDefault();
+    
+    //Cria o documento vazio
+    var createDocument = document.implementation.createDocument('<?xml version="1.0" encoding="UTF-8"?>', "", null);
+    var biblioteca = createDocument.createElement('biblioteca');
+    for(var i = 0; i < itens.length; i++){
+        
+        
+        //var nomeDocumento = createDocument.createElement('nome');
+        var filmes = createDocument.createElement(`${"filmes"+i}`);
+        var tituloFilme = createDocument.createElement('titulo');
+        var linkFilme = createDocument.createElement('links');
+        var farnatFilme = createDocument.createElement('fanart')
+        var thumbFilme = createDocument.createElement('thumbnail');
+        var generoFilme = createDocument.createElement('genre');
+        var dataLancamentoFilme = createDocument.createElement('data');
+
+        tituloFilme.textContent = itens[i].itens[0],
+        linkFilme.textContent = itens[i].itens[1],
+        farnatFilme.textContent = itens[i].itens[2],
+        thumbFilme.textContent = itens[i].itens[3],
+        generoFilme.textContent = itens[i].itens[4],
+        dataLancamentoFilme.textContent = itens[i].itens[5]  
+        filmes.appendChild(tituloFilme);
+        filmes.appendChild(linkFilme);
+        filmes.appendChild(farnatFilme);
+        filmes.appendChild(thumbFilme);
+        filmes.appendChild(generoFilme);
+        filmes.appendChild(dataLancamentoFilme);
+        biblioteca.appendChild(filmes);
+        
+    }
+    console.log(biblioteca.outerHTML);
+    console.log(biblioteca.innerHTML);
+    
+    
+
+            
+    
+    
+});
+
+
+function preencheTemplate(){
+    
+
+
+
+}

@@ -1,112 +1,83 @@
+/*
+        A ideia é criar uma interface q crie arquivos criação de arquivos xml,
+        onde eu possa inserir os dados e o mesmo exportar-los.
 
+        Apos a inserção dos Itens, decidir se vai adicionar um novo item
+        Se nao, criar o arquivo .XML
+*/
+let form = document.querySelector('#form');
+let nomeArquivo = document.querySelector('#inptTitleArquivo');
+let tituloItem = document.querySelector('#inptTitle');
+let linkItem = document.querySelector('#inptLink');
+let fanartItem = document.querySelector('#inptFanart');
+let thumbItem = document.querySelector('#inptThumb');
+let generoItem = document.querySelector('#inptGenere');
+let dataItem = document.querySelector('#inptDatadeLancamento');
+let arquivoXML = [];
 
-var inputTituloArquivo = document.querySelector('#inptTitleArquivo');
-var inputTitulo = document.querySelector('#inptTitle');
-var inputLink = document.querySelector("#inptLink");
-var inputFanart = document.querySelector("#inptFanart");
-var inputThumb = document.querySelector("#inptThumb");
-var inputGenero = document.querySelector("#inptGenere");
-var inputData = document.querySelector("#inptDatadeLancamento");
-var itensXML = {};
-var itens = [];
-
-var salvaXML = document.querySelector('#salvarXML');
-salvaXML.addEventListener('click', function(event){
-
-    event.preventDefault();
-    itensXML = {
-        id: Date.now(),
-        nomeArquivo: inputTituloArquivo.value,
-        itens: [
-            inputTitulo.value, 
-            inputLink.value, 
-            inputFanart.value, 
-            inputThumb.value,  
-            inputGenero.value, 
-            inputData.value
-        ]
-    }
-
-    var form = document.getElementById('form');
-    form.reset();
-    // var blob = new Blob([templateXML], {type: "text/xml"});
-    // saveAs(blob, itensXML.nomeArquivo,"text/plain;charset=utf-8");
-});
-
-var novoItem = document.querySelector('#novoItem');
-novoItem.addEventListener('click', function(event){
-    event.preventDefault();
+//
+function arquivo(nome, titulo, link, fanart, thumb, genero, data) {
     
-    var elementoXML = itensXML;
-    var idx = itens.indexOf(elementoXML);
+    let dadosXML = [
 
-    for(var i = 0; i < 1; i++){
-        
-        if(idx == -1){
-            itens.push(itensXML);
-        }else{
-            alert('Dado Repetido')    
+        id = Date.now(),
+        nome,
+        {
+            'itens':{
+                'tituloDoItem': titulo,
+                'linkDoTitulo': link,
+                'fanart': fanart,
+                'thumb': thumb,
+                'genero': genero,
+                'dataDeLancamento': data
+            }
         }
-    }
-    console.log(itens);
+    ];
     
-});
+    if(arquivoXML.length == 0){ //verifica se o array esta vazio
+        arquivoXML.push(dadosXML); // se estiver vazio, envia para o array
+    }else{
+        arquivoXML[0].push(arquivoXML[0][2]) //se nao estiver vazio, enviar os novos dados, para o novo array
+    }
+}
 
-var limpaCampos = document.querySelector('#limpaCampos');
-limpaCampos.addEventListener('click', function(){
+function novoItem(){
 
-    var form = document.getElementById('form');
+    arquivo(
+        nomeArquivo.value,
+        tituloItem.value,
+        linkItem.value,
+        fanartItem.value,
+        thumbItem.value,
+        generoItem.value,
+        dataItem.value
+    )
+}
+
+function templateArquivoXML(){
+
+    return `
+        <?xml version="1.0" encoding="utf-8"?>
+            ${arquivoXML.map(a => {
+                return `
+                    <item>
+                        <titulo>${a[3].itens.tituloDoItem}</titulo>
+                        <links>${a[3].itens.tituloDoItem}</links>
+                        <fanart>${a[3].itens.tituloDoItem}</fanart>
+                        <thumb>${a[3].itens.tituloDoItem}</thumb>
+                        <genero>${a[3].itens.tituloDoItem}</genero>
+                        <data>${a[3].itens.tituloDoItem}</data>
+                    </item>
+                `
+            })}
+
+    
+    
+    `
+    
+
+}
+
+function limpaCampos(){
     form.reset();
-});
-
-var novo = document.querySelector('#teste');
-teste.addEventListener('click', function(event){
-    event.preventDefault();
-    
-    //Cria o documento vazio
-    var createDocument = document.implementation.createDocument('<?xml version="1.0" encoding="UTF-8"?>', "", null);
-    var biblioteca = createDocument.createElement('biblioteca');
-    for(var i = 0; i < itens.length; i++){
-        
-        
-        //var nomeDocumento = createDocument.createElement('nome');
-        var filmes = createDocument.createElement(`${"filmes"+i}`);
-        var tituloFilme = createDocument.createElement('titulo');
-        var linkFilme = createDocument.createElement('links');
-        var farnatFilme = createDocument.createElement('fanart')
-        var thumbFilme = createDocument.createElement('thumbnail');
-        var generoFilme = createDocument.createElement('genre');
-        var dataLancamentoFilme = createDocument.createElement('data');
-
-        tituloFilme.textContent = itens[i].itens[0],
-        linkFilme.textContent = itens[i].itens[1],
-        farnatFilme.textContent = itens[i].itens[2],
-        thumbFilme.textContent = itens[i].itens[3],
-        generoFilme.textContent = itens[i].itens[4],
-        dataLancamentoFilme.textContent = itens[i].itens[5]  
-        filmes.appendChild(tituloFilme);
-        filmes.appendChild(linkFilme);
-        filmes.appendChild(farnatFilme);
-        filmes.appendChild(thumbFilme);
-        filmes.appendChild(generoFilme);
-        filmes.appendChild(dataLancamentoFilme);
-        biblioteca.appendChild(filmes);
-        
-    }
-    console.log(biblioteca.outerHTML);
-    console.log(biblioteca.innerHTML);
-    
-    
-
-            
-    
-    
-});
-
-
-function preencheTemplate(){
-    
-
-
-
 }

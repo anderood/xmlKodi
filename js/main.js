@@ -1,3 +1,5 @@
+//const { saveAs } = require("./FileSaver");
+
 /*
         A ideia é criar uma interface q crie arquivos criação de arquivos xml,
         onde eu possa inserir os dados e o mesmo exportar-los.
@@ -46,22 +48,32 @@ function novoItem(){
 }
 
 function templateArquivoXML(){
-    return `
-        <?xml version="1.0" encoding="utf-8"?>
+    return `<?xml version="1.0" encoding="utf-8"?>
+       <channels> 
         ${arquivoXML.map(a => {
             console.log(a);
             return `
+            <itens>
                 <titulo>${a.tituloDoItem}</titulo>
-                <links>${a.tituloDoItem}</links>
-                <fanart>${a.tituloDoItem}</fanart>
-                <thumb>${a.tituloDoItem}</thumb>
-                <genero>${a.tituloDoItem}</genero>
-                <data>${a.tituloDoItem}</data>
+                <links>${a.linkdDoItem}</links>
+                <fanart>${a.fanart}</fanart>
+                <thumb>${a.thumb}</thumb>
+                <genero>${a.genero}</genero>
+                <data>${a.dataDeLancamento}</data>
+            </itens>
             `
         }).join('')}
-    
+      </channels> 
     `
 }
+
+function salvarXML(){
+    let tabela = templateArquivoXML();
+    var blob = new Blob([tabela], {type: "text/xml"});
+    saveAs(blob, 'a', "text/plain;charset=utf-8");
+}
+
+
 
 function limpaCampos(){
     form.reset();

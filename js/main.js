@@ -18,27 +18,18 @@ let arquivoXML = [];
 //
 function arquivo(nome, titulo, link, fanart, thumb, genero, data) {
     
-    let dadosXML = [
-
-        id = Date.now(),
-        nome,
+    let dadosXML = 
         {
-            'itens':{
-                'tituloDoItem': titulo,
-                'linkDoTitulo': link,
-                'fanart': fanart,
-                'thumb': thumb,
-                'genero': genero,
-                'dataDeLancamento': data
-            }
+            "nomeDoItem": nome,
+            'tituloDoItem': titulo,
+            'linkdDoItem': link,
+            'fanart': fanart,
+            'thumb': thumb,
+            'genero': genero,
+            'dataDeLancamento': data
         }
-    ];
     
-    if(arquivoXML.length == 0){ //verifica se o array esta vazio
-        arquivoXML.push(dadosXML); // se estiver vazio, envia para o array
-    }else{
-        arquivoXML[0].push(arquivoXML[0][2]) //se nao estiver vazio, enviar os novos dados, para o novo array
-    }
+    arquivoXML.push(dadosXML); // se estiver vazio, envia para o array
 }
 
 function novoItem(){
@@ -55,27 +46,21 @@ function novoItem(){
 }
 
 function templateArquivoXML(){
-
     return `
         <?xml version="1.0" encoding="utf-8"?>
-            ${arquivoXML.map(a => {
-                return `
-                    <item>
-                        <titulo>${a[3].itens.tituloDoItem}</titulo>
-                        <links>${a[3].itens.tituloDoItem}</links>
-                        <fanart>${a[3].itens.tituloDoItem}</fanart>
-                        <thumb>${a[3].itens.tituloDoItem}</thumb>
-                        <genero>${a[3].itens.tituloDoItem}</genero>
-                        <data>${a[3].itens.tituloDoItem}</data>
-                    </item>
-                `
-            })}
-
-    
+        ${arquivoXML.map(a => {
+            console.log(a);
+            return `
+                <titulo>${a.tituloDoItem}</titulo>
+                <links>${a.tituloDoItem}</links>
+                <fanart>${a.tituloDoItem}</fanart>
+                <thumb>${a.tituloDoItem}</thumb>
+                <genero>${a.tituloDoItem}</genero>
+                <data>${a.tituloDoItem}</data>
+            `
+        }).join('')}
     
     `
-    
-
 }
 
 function limpaCampos(){

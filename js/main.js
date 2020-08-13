@@ -7,6 +7,8 @@
         Apos a inserção dos Itens, decidir se vai adicionar um novo item
         Se nao, criar o arquivo .XML
 */
+
+//
 let form = document.querySelector('#form');
 let nomeArquivo = document.querySelector('#inptTitleArquivo');
 let tituloItem = document.querySelector('#inptTitle');
@@ -16,6 +18,15 @@ let thumbItem = document.querySelector('#inptThumb');
 let generoItem = document.querySelector('#inptGenere');
 let dataItem = document.querySelector('#inptDatadeLancamento');
 let arquivoXML = [];
+
+let criaXML = document.querySelector('#salvarXML');
+let limparCampos = document.querySelector('#limpaCampos');
+let novo = document.querySelector('#novoItem');
+
+criaXML.addEventListener('click', salvarXML);
+limparCampos.addEventListener('click', limpaCampos);
+novo.addEventListener('click', novoItem);
+
 
 //
 function arquivo(nome, titulo, link, fanart, thumb, genero, data) {
@@ -35,7 +46,7 @@ function arquivo(nome, titulo, link, fanart, thumb, genero, data) {
 }
 
 function novoItem(){
-
+    event.preventDefault();
     arquivo(
         nomeArquivo.value,
         tituloItem.value,
@@ -45,6 +56,7 @@ function novoItem(){
         generoItem.value,
         dataItem.value
     )
+    limpaCampos();
 }
 
 function templateArquivoXML(){
@@ -68,12 +80,13 @@ function templateArquivoXML(){
 }
 
 function salvarXML(){
+    event.preventDefault();
+    novoItem();
     let tabela = templateArquivoXML();
     var blob = new Blob([tabela], {type: "text/xml"});
-    saveAs(blob, 'a', "text/plain;charset=utf-8");
+    saveAs(blob, nomeArquivo.value, "text/plain;charset=utf-8");
+    limpaCampos();
 }
-
-
 
 function limpaCampos(){
     form.reset();

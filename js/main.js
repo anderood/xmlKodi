@@ -21,11 +21,11 @@ let arquivoXML = [];
 
 let criaXML = document.querySelector('#salvarXML');
 let limparCampos = document.querySelector('#limpaCampos');
-let novo = document.querySelector('#novoItem');
+let salvar = document.querySelector('#salvarDados');
 
 criaXML.addEventListener('click', salvarXML);
 limparCampos.addEventListener('click', limpaCampos);
-novo.addEventListener('click', novoItem);
+salvar.addEventListener('click', novoItem);
 
 
 //
@@ -42,11 +42,11 @@ function arquivo(nome, titulo, link, fanart, thumb, genero, data) {
             'dataDeLancamento': data
         }
     
-    arquivoXML.push(dadosXML); // se estiver vazio, envia para o array
+    arquivoXML.push(dadosXML); 
 }
 
 function novoItem(){
-    event.preventDefault();
+    event.preventDefault()
     arquivo(
         nomeArquivo.value,
         tituloItem.value,
@@ -61,31 +61,32 @@ function novoItem(){
 
 function templateArquivoXML(){
     return `<?xml version="1.0" encoding="utf-8"?>
-       <channels> 
+       <itens> 
         ${arquivoXML.map(a => {
-            console.log(a);
             return `
-            <itens>
+            <item>
                 <titulo>${a.tituloDoItem}</titulo>
                 <links>${a.linkdDoItem}</links>
                 <fanart>${a.fanart}</fanart>
                 <thumb>${a.thumb}</thumb>
                 <genero>${a.genero}</genero>
                 <data>${a.dataDeLancamento}</data>
-            </itens>
+            </item>
             `
         }).join('')}
-      </channels> 
+      </itens> 
     `
 }
 
 function salvarXML(){
-    event.preventDefault();
-    novoItem();
-    let tabela = templateArquivoXML();
-    var blob = new Blob([tabela], {type: "text/xml"});
-    saveAs(blob, nomeArquivo.value, "text/plain;charset=utf-8");
-    limpaCampos();
+    
+    console.log(arquivoXML[0].nomeDoItem);
+    let nomeDoArquivo = arquivoXML[0].nomeDoItem;
+
+    let template = templateArquivoXML();
+    let blob = new Blob([template], {type: "text/xml"});
+    saveAs(blob, nomeDoArquivo, "text/plain;charset=utf-8");
+    
 }
 
 function limpaCampos(){

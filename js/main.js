@@ -27,31 +27,24 @@ salvar.addEventListener('click', novoItem);
 
 
 //
-function arquivoChannels(nome, titulo, link, fanart, thumb) {
+function arquivoXML(nomeChannels, tituloChannels, externalChannels, fanartChannels, thumbChannels, tituloItem, linkItem, regexItem, fanartItem, thumbItem, infoItem){
     
     let dadosXML = 
         {
-            "nomeArquivo": nome,
-            'name': titulo,
-            'externallink': link,
-            'fanart': fanart,
-            'thumb': thumb
-        }
-    
-    arquivoXML.push(dadosXML); 
-}
+            "nomeChannels": nomeChannels,
+            'tituloChannels': tituloChannels,
+            'externalChannels': externalChannels,
+            'fanartChannels': fanartChannels,
+            'thumbChannels': thumbChannels,
+            
+            //Opcao Item
 
-function arquivoItens(nome, titulo, link, fanart, thumb, info) {
-    
-    let dadosXML = 
-        {
-            "nomeArquivo": nome,
-            'tituloDoItem': titulo,
-            'linkdDoItem': link,
-            'regex': link,
-            'fanart': fanart,
-            'thumb': thumb,
-            'info': info
+            'tituloItem': tituloItem,
+            'linkdItem': linkItem,
+            'regexItem': regexItem,
+            'fanartItem': fanartItem,
+            'thumbItem': thumbItem,
+            'infoItem': infoItem,
         }
     
     arquivoXML.push(dadosXML); 
@@ -69,31 +62,14 @@ function novoItem(){
     limpaCampos();
 }
 
-function templateItens(){
-    return `<?xml version="1.0" encoding="utf-8"?>
-    <itens> 
-    ${arquivoXML.map(a => {
-        return `
-        <item>
-            <title>${a.tituloDoItem}</title>
-            <link>${a.linkdDoItem}</link>
-            <regex></regex>
-            <fanart>${a.fanart}</fanart>
-            <thumbnail>${a.thumb}</thumbnail>
-            <info></info>
-        </item>`
-    }).join('')}
-    </itens>`
-}
-
-function templateChannels(){
+function templateXML(){
     return `<?xml version="1.0" encoding="utf-8"?>
     <channels> 
     ${arquivoXML.map(a => {
         return `
         <channel>
-            <name>${a.tituloDoItem}</name>
-            <externallink>${a.linkdDoItem}</externallink>
+            <name>${a.name}</name>
+            <externallink>${a.externallink}</externallink>
             <fanart>${a.fanart}</fanart>
             <thumbnail>${a.thumb}</thumbnail>
         </channel>`
@@ -103,11 +79,11 @@ function templateChannels(){
 
 function salvarXML(){
     
-    console.log(arquivoXML[0].nomeDoItem);
-    let nomeDoArquivo = arquivoXML[0].nomeDoItem;
+    console.log(templateXML[0].nomeArquivo);
+    let nomeDoArquivo = templateXML[0].nomeArquivo;
 
 
-    let template = templateChannels();
+    let template = templateXML();
     let blob = new Blob([template], {type: "text/xml"});
     saveAs(blob, nomeDoArquivo, "text/plain;charset=utf-8");
     

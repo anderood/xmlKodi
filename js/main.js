@@ -15,8 +15,6 @@ let tituloItem = document.querySelector('#inptTitle');
 let linkItem = document.querySelector('#inptLink');
 let fanartItem = document.querySelector('#inptFanart');
 let thumbItem = document.querySelector('#inptThumb');
-let generoItem = document.querySelector('#inptGenere');
-let dataItem = document.querySelector('#inptDatadeLancamento');
 let arquivoXML = [];
 
 let criaXML = document.querySelector('#salvarXML');
@@ -29,17 +27,31 @@ salvar.addEventListener('click', novoItem);
 
 
 //
-function arquivo(nome, titulo, link, fanart, thumb, genero, data) {
+function arquivoChannels(nome, titulo, link, fanart, thumb) {
     
     let dadosXML = 
         {
-            "nomeDoItem": nome,
+            "nomeArquivo": nome,
+            'name': titulo,
+            'externallink': link,
+            'fanart': fanart,
+            'thumb': thumb
+        }
+    
+    arquivoXML.push(dadosXML); 
+}
+
+function arquivoItens(nome, titulo, link, fanart, thumb, info) {
+    
+    let dadosXML = 
+        {
+            "nomeArquivo": nome,
             'tituloDoItem': titulo,
             'linkdDoItem': link,
+            'regex': link,
             'fanart': fanart,
             'thumb': thumb,
-            'genero': genero,
-            'dataDeLancamento': data
+            'info': info
         }
     
     arquivoXML.push(dadosXML); 
@@ -47,35 +59,46 @@ function arquivo(nome, titulo, link, fanart, thumb, genero, data) {
 
 function novoItem(){
     event.preventDefault()
-    arquivo(
+    arquivoChannels(
         nomeArquivo.value,
         tituloItem.value,
         linkItem.value,
         fanartItem.value,
         thumbItem.value,
-        generoItem.value,
-        dataItem.value
     )
     limpaCampos();
 }
 
-function templateArquivoXML(){
+function templateItens(){
     return `<?xml version="1.0" encoding="utf-8"?>
-       <itens> 
-        ${arquivoXML.map(a => {
-            return `
-            <item>
-                <titulo>${a.tituloDoItem}</titulo>
-                <links>${a.linkdDoItem}</links>
-                <fanart>${a.fanart}</fanart>
-                <thumb>${a.thumb}</thumb>
-                <genero>${a.genero}</genero>
-                <data>${a.dataDeLancamento}</data>
-            </item>
-            `
-        }).join('')}
-      </itens> 
-    `
+    <itens> 
+    ${arquivoXML.map(a => {
+        return `
+        <item>
+            <title>${a.tituloDoItem}</title>
+            <link>${a.linkdDoItem}</link>
+            <regex></regex>
+            <fanart>${a.fanart}</fanart>
+            <thumbnail>${a.thumb}</thumbnail>
+            <info></info>
+        </item>`
+    }).join('')}
+    </itens>`
+}
+
+function templateChannels(){
+    return `<?xml version="1.0" encoding="utf-8"?>
+    <channels> 
+    ${arquivoXML.map(a => {
+        return `
+        <channel>
+            <name>${a.tituloDoItem}</name>
+            <externallink>${a.linkdDoItem}</externallink>
+            <fanart>${a.fanart}</fanart>
+            <thumbnail>${a.thumb}</thumbnail>
+        </channel>`
+    }).join('')}
+    </channels>`
 }
 
 function salvarXML(){
@@ -83,7 +106,8 @@ function salvarXML(){
     console.log(arquivoXML[0].nomeDoItem);
     let nomeDoArquivo = arquivoXML[0].nomeDoItem;
 
-    let template = templateArquivoXML();
+
+    let template = templateChannels();
     let blob = new Blob([template], {type: "text/xml"});
     saveAs(blob, nomeDoArquivo, "text/plain;charset=utf-8");
     

@@ -19,9 +19,17 @@
     <nav>
         <section>
             <section>
-                <ul>
-                    <li>Home</li>
-                </ul>
+                <form action="">
+                    <fieldset>
+                        <legend>Tipo de Arquivo</legend>
+                        <input type="radio" id="channels" name="tipo" value="Channels" checked>
+                        <label for="channels">Channels</label>
+                       <input type="radio" id="itens" name="tipo" value="Channels">
+                       <label for="itens">Itens
+                    </fieldset>
+
+                   </label>
+                </form>
             </section>
         </section>
     </nav>
@@ -29,36 +37,59 @@
         <article>
             <section>
                 <section>
+                    <br>
                     <form id="form" action="">
                         <fieldset>
-                            <legend>Cadastro de Titulos KODI</legend>
+                            
                             <label for="">Nome do Arquivo</label>
-                            <input id="inptTitleArquivo" type="text">
+                            <input id="inptNomeArquivo" type="text">
 
                             <fieldset>
                                 <legend>Cadastrar Itens</legend>
-                                <p>
-                                    <a id="novoItem" href="">Novo Item</a>
-                                </p>
-                                <ul>
+                                
+                                <ul id="channel">
+                                    <li>Titulo do Channel
+                                        <input id="inptTitleChannel" type="text">
+                                    </li>
+                                    <li>External do Channel
+                                        <input id="inptExternalChannel" type="text">
+                                    </li>
+                                    <li>Fanart do Channel
+                                        <input id="inptFanartChannel" type="text">
+                                    </li>
+                                    <li>Thumbnail do Channel
+                                        <input id="inptThumbChannel" type="text">
+                                    </li>
+                                </ul>
+
+                                <ul id="itens">
                                     <li>Titulo do Item
-                                        <input id="inptTitle" type="text">
+                                        <input id="inptTitleItem" type="text">
                                     </li>
                                     <li>Link do Item
-                                        <input id="inptLink" type="text">
+                                        <input id="inptLinkItem" type="text">
+                                    </li>
+                                    <li>Regex do Item
+                                        <input id="inptRegexItem" type="text">
                                     </li>
                                     <li>Fanart do Item
-                                        <input id="inptFanart" type="text">
+                                        <input id="inptFanartItem" type="text">
                                     </li>
                                     <li>Thumbnail do Item
-                                        <input id="inptThumb" type="text">
+                                        <input id="inptThumbItem" type="text">
+                                    </li>
+                                    <li>Info do Item
+                                        <input id="inptInfoItem" type="text">
                                     </li>
                                 </ul>
                             </fieldset>
+                            
                             <button id="salvarXML">Criar XML</button>
                             <button id="limpaCampos">Limpar Campos</button>
                             <button id="salvarDados">Salvar Dados</button>
+                            <button id="x">Reset</button>
                         </fieldset>
+                        
                     </form>
                 </section>
             </section>

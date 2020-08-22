@@ -10,11 +10,23 @@
 
 //
 let form = document.querySelector('#form');
-let nomeArquivo = document.querySelector('#inptTitleArquivo');
-let tituloItem = document.querySelector('#inptTitle');
-let linkItem = document.querySelector('#inptLink');
-let fanartItem = document.querySelector('#inptFanart');
-let thumbItem = document.querySelector('#inptThumb');
+let nomeArquivo = document.querySelector('#inptNomeArquivo');
+
+//Channels
+let titleChannel = document.querySelector('#inptTitleChannel');
+let externalChannel = document.querySelector('#inptExternalChannel');
+let fanartChannel = document.querySelector('#inptFanartChannel');
+let thumbChannel = document.querySelector('#inptThumbChannel');
+
+//Itens
+let titleItem = document.querySelector('#inptTitleItem');
+let linkItem = document.querySelector('#inptLinkItem');
+let regexItem = document.querySelector('#inptRegexItem');
+let fanartItem = document.querySelector('#inptFanartItem');
+let thumbItem = document.querySelector('#inptThumbItem');
+let infoItem = document.querySelector('#inptInfoItem');
+
+
 let arquivoXML = [];
 
 let criaXML = document.querySelector('#salvarXML');
@@ -27,7 +39,7 @@ salvar.addEventListener('click', novoItem);
 
 
 //
-function arquivoXML(nomeChannels, tituloChannels, externalChannels, fanartChannels, thumbChannels, tituloItem, linkItem, regexItem, fanartItem, thumbItem, infoItem){
+function channelsXML(nomeChannels, tituloChannels, externalChannels, fanartChannels, thumbChannels){
     
     let dadosXML = 
         {
@@ -36,9 +48,16 @@ function arquivoXML(nomeChannels, tituloChannels, externalChannels, fanartChanne
             'externalChannels': externalChannels,
             'fanartChannels': fanartChannels,
             'thumbChannels': thumbChannels,
-            
-            //Opcao Item
+        }
+    
+    arquivoXML.push(dadosXML); 
+}
 
+function itensXML(nomeItem, tituloItem, linkItem, regexItem, fanartItem, thumbItem, infoItem){
+    
+    let dadosXML = 
+        {
+            'nomeItem': nomeItem,
             'tituloItem': tituloItem,
             'linkdItem': linkItem,
             'regexItem': regexItem,

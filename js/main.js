@@ -43,11 +43,11 @@ salvar.addEventListener('click', novoItem);
 
 
 //
-function channelsXML(nomeChannels, tituloChannels, externalChannels, fanartChannels, thumbChannels){
+function channelsXML(nomeArquivo, tituloChannels, externalChannels, fanartChannels, thumbChannels){
     
     let dadosXML = 
         {
-            "nomeChannels": nomeChannels,
+            "nomeArquivo": nomeArquivo,
             'tituloChannels': tituloChannels,
             'externalChannels': externalChannels,
             'fanartChannels': fanartChannels,
@@ -57,13 +57,13 @@ function channelsXML(nomeChannels, tituloChannels, externalChannels, fanartChann
     arquivoXML.push(dadosXML); 
 }
 
-function itensXML(nomeItem, tituloItem, linkItem, regexItem, fanartItem, thumbItem, infoItem){
+function itensXML(nomeArquivo, tituloItem, linkItem, regexItem, fanartItem, thumbItem, infoItem){
     
     let dadosXML = 
         {
-            'nomeItem': nomeItem,
+            'nomeArquivo': nomeArquivo,
             'tituloItem': tituloItem,
-            'linkdItem': linkItem,
+            'linkItem': linkItem,
             'regexItem': regexItem,
             'fanartItem': fanartItem,
             'thumbItem': thumbItem,
@@ -80,6 +80,7 @@ function novoItem(){
     if(inptChannels.checked){
 
         channelsXML(
+            nomeArquivo.value,
             titleChannel.value,
             externalChannel.value,
             fanartChannel.value,
@@ -88,6 +89,7 @@ function novoItem(){
         console.log(arquivoXML);
     }else{
         itensXML(
+            nomeArquivo.value,
             titleItem.value,
             linkItem.value,
             regexItem.value,
@@ -102,26 +104,47 @@ function novoItem(){
 }
 
 function templateXML(){
-    return `<?xml version="1.0" encoding="utf-8"?>
+
+    if(inptChannels.checked){
+        return `<?xml version="1.0" encoding="utf-8"?>
     <channels> 
-    ${arquivoXML.map(a => {
+    ${arquivoXML.map(arquivo => {
         return `
         <channel>
-            <name>${a.name}</name>
-            <externallink>${a.externallink}</externallink>
-            <fanart>${a.fanart}</fanart>
-            <thumbnail>${a.thumb}</thumbnail>
+            <name>${arquivo.tituloChannels}</name>
+            <externallink>${arquivo.externalChannels}</externallink>
+            <fanart>${arquivo.fanartChannels}</fanart>
+            <thumbnail>${arquivo.thumbChannels}</thumbnail>
         </channel>`
     }).join('')}
     </channels>`
+    
+    }else{
+        return `<?xml version="1.0" encoding="utf-8"?>
+    <itens> 
+    ${arquivoXML.map(item => {
+        return `
+        <item>
+            <title>${item.tituloItem}</title>
+            <link>${item.linkItem}</link>
+            <regex>${item.regexItem}</regex>
+            <fanart>${item.fanartItem}</fanart>
+            <thumbnail>${item.thumbItem}</thumbnail>
+            <info>${item.infoItem}</info>
+        </item>`
+    }).join('')}
+    </itens>`
+    }
+    
 }
 
+//Falta corrigir o nome do arquivo
 function salvarXML(){
+    event.preventDefault()
+    console.log(arquivoXML[0].nomeArquivo);
+    let nomeDoArquivo = arquivoXML[0].nomeArquivo;
+
     
-    console.log(templateXML[0].nomeArquivo);
-    let nomeDoArquivo = templateXML[0].nomeArquivo;
-
-
     let template = templateXML();
     let blob = new Blob([template], {type: "text/xml"});
     saveAs(blob, nomeDoArquivo, "text/plain;charset=utf-8");

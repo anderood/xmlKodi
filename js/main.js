@@ -9,6 +9,10 @@
 */
 
 //
+
+let inptChannels = document.querySelector('#inptChannels');
+let inptItens = document.querySelector('#inptItens');
+
 let form = document.querySelector('#form');
 let nomeArquivo = document.querySelector('#inptNomeArquivo');
 
@@ -71,13 +75,29 @@ function itensXML(nomeItem, tituloItem, linkItem, regexItem, fanartItem, thumbIt
 
 function novoItem(){
     event.preventDefault()
-    arquivoChannels(
-        nomeArquivo.value,
-        tituloItem.value,
-        linkItem.value,
-        fanartItem.value,
-        thumbItem.value,
-    )
+
+    console.log(inptChannels.checked);
+    if(inptChannels.checked){
+
+        channelsXML(
+            titleChannel.value,
+            externalChannel.value,
+            fanartChannel.value,
+            thumbChannel.value,
+        )
+        console.log(arquivoXML);
+    }else{
+        itensXML(
+            titleItem.value,
+            linkItem.value,
+            regexItem.value,
+            fanartItem.value,
+            thumbItem.value,
+            infoItem.value,
+        )
+        console.log(arquivoXML);
+    }
+    
     limpaCampos();
 }
 

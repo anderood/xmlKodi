@@ -7,6 +7,15 @@
         Apos a inserção dos Itens, decidir se vai adicionar um novo item
         Se nao, criar o arquivo .XML
 */
+/*
+        Parte final do projeto
+        Escolher a opção,
+        entrar com o nome do arquivo, 
+        desabilitar as opções de channels ou itens, e bloquear a opção de nome do arquivo
+
+*/
+
+
 
 //
 
@@ -138,13 +147,12 @@ function templateXML(){
     
 }
 
-//Falta corrigir o nome do arquivo
+
 function salvarXML(){
     event.preventDefault()
-    console.log(arquivoXML[0].nomeArquivo);
+
     let nomeDoArquivo = arquivoXML[0].nomeArquivo;
 
-    
     let template = templateXML();
     let blob = new Blob([template], {type: "text/xml"});
     saveAs(blob, nomeDoArquivo, "text/plain;charset=utf-8");

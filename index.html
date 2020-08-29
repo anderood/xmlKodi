@@ -19,6 +19,7 @@
     <nav>
         <section>
             <section>
+                <!-- Tipo de Arquivo -->
                 <form action="">
                     <fieldset>
                         <legend>Tipo de Arquivo</legend>
@@ -26,24 +27,27 @@
                         <label for="channels">Channels</label>
                         <input type="radio" id="inptItens" name="tipo" value="Channels">
                         <label for="itens">Itens
-                        
                     </fieldset>
 
                    </label>
                 </form>
                 <br>
+                <!-- Multiplicação de Link -->
                 <form action="">
                     <fieldset>
                         <legend>Multiplicação de Links</legend>
-                        <label for="Endereço">Endereço</label>
-                        <input type="text">
-                        <label for="Endereço">Servidor</label>
-                        <input type="text">
-                        <label for="Endereço">Nome</label>
-                        <input type="text">
-                        <label for="Endereço">Quantidade</label>
-                        <input type="text">
-                        <button>Criar</button>
+                        <label for="">Inicio</label>
+                        <input id="inptLink" type="text" size="40">
+                        <label for="">Variavel</label>
+                        <input id="inptVariavel" type="text" size="10">
+                        <label for="">Meio</label>
+                        <input id="inptMeio" type="text">
+                        <label for="">Variavel</label>
+                        <input id="inptFim" type="text" size="10">
+                        <label for="">Vezes</label>
+                        <input id="inptVezes" type="text" size="3">
+                        <button id="btnCriarLink">Criar</button>
+                        <button>Limpar</button>
                     </fieldset>
                 </form>
             </section>
@@ -101,8 +105,8 @@
                             </fieldset>
                             
                             <button id="salvarXML">Criar XML</button>
-                            <button id="limpaCampos">Limpar Campos</button>
-                            <button id="salvarDados">Salvar Dados</button>
+                            <button id="limpaCampos">Limpar</button>
+                            <button id="salvarDados">Salvar</button>
                             <button id="x">Reset</button>
                         </fieldset>
                         
@@ -120,5 +124,6 @@
     </footer>
     <script src="./js/FileSaver.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/mutiplica.js"></script>
 </body>
 </html>

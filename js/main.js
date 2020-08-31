@@ -82,9 +82,19 @@ function itensXML(nomeArquivo, tituloItem, linkItem, regexItem, fanartItem, thum
     arquivoXML.push(dadosXML); 
 }
 
+function campoVazio(){
+    if (inptLinkItem.value == ''){
+        linksProntos.map(link => {
+            let resposta = link.linkPronto
+            console.log(resposta);
+            return resposta}).join('');
+    }else{
+        return inptLinkItem.value
+    }
+}
 function novoItem(){
     event.preventDefault()
-
+    
     console.log(inptChannels.checked);
     if(inptChannels.checked){
 
@@ -94,23 +104,23 @@ function novoItem(){
             externalChannel.value,
             fanartChannel.value,
             thumbChannel.value,
-        )
-        console.log(arquivoXML);
-    }else{
-        itensXML(
-            nomeArquivo.value,
-            titleItem.value,
-            linkItem.value,
-            regexItem.value,
-            fanartItem.value,
-            thumbItem.value,
-            infoItem.value,
-        )
-        console.log(arquivoXML);
-    }
-    
-    limpaCampos();
-}
+            )
+            console.log(arquivoXML);
+        }else{
+            itensXML(
+                nomeArquivo.value,
+                titleItem.value,
+                campoVazio(),
+                regexItem.value,
+                fanartItem.value,
+                thumbItem.value,
+                infoItem.value,
+                )
+                console.log(arquivoXML);
+            }
+            limpaCampos();
+        }
+        
 
 function templateXML(){
 
@@ -131,6 +141,7 @@ function templateXML(){
     }else{
         return `<?xml version="1.0" encoding="utf-8"?>
     <itens> 
+    
     ${arquivoXML.map(item => {
         return `
         <item>
